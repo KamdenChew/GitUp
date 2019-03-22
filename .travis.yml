@@ -23,7 +23,7 @@ matrix:
     sudo: true
     before_script:
       - sudo chmod +x ./src/test/compile-src.sh #Add permission to run script
-      - python3.7 -m pip install pybuilder #For Build System
+      - python3.6 -m pip install pybuilder #For Build System
       - python3.7 -m pip install pyinstaller #For Creating Executable
     script:
       - ./src/test/compile-src.sh #Compile python files in /src
