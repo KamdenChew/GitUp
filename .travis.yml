@@ -38,4 +38,4 @@ matrix:
       - pyb #Build
     
     after_script:
-      - ./generate-executable.sh
+      - ./generate-and-deploy-executable.sh
