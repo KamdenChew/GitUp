@@ -4,3 +4,4 @@ cp ./gui/git_attributes.txt ./dist #The dist folder contains the executable, but
 ./dist/GitUp& PID=$!; sleep 5; kill $PID #Run the executable before we zip it to make sure it opens
 mv dist GitUp #Rename folder to be zipped
 zip -r GitUp.zip GitUp #Zip/
+dropbox-deployment
