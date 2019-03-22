@@ -45,4 +45,5 @@ matrix:
       - zip -r GitUp.zip GitUp #Zip
       
     after_success:
+      - ls /home/travis/build/KamdenChew/GitUp/src/main/python/
       - dropbox-deployment #Deploy the Zip
