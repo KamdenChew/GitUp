@@ -28,6 +28,7 @@ matrix:
     
     before_script:
       - sudo chmod +x ./src/test/compile-src.sh #Add permission to run script
+      - sudo chmod +x ./generate-executable.sh
       - python3.7 -m pip install -U --pre pybuilder #For Build System
       - python3.7 -m pip install pyinstaller #For Creating Executable
     
@@ -37,10 +38,5 @@ matrix:
       - pyb #Build
     
     after_script:
-      - cd ./src/main/python #Move adjacent to target script for executable
-      - python3.7 -m PyInstaller GitUp.py --onefile #Create executable
-      - cp ./gui/git_attributes.txt ./dist #The dist folder contains the executable, but also requires this .txt for deployment
-      - ./dist/GitUp& PID=$!; sleep 5; kill $PID #Run the executable before we zip it to make sure it opens
-      - mv dist GitUp #Rename folder to be zipped
-      - zip -r GitUp.zip GitUp #Zip/
+      - ./generate-executable.sh
       - dropbox-deployment #Deploy the Zip
