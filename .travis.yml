@@ -1,4 +1,5 @@
 matrix:
+  
   include:
     language: node_js
     node_js:
@@ -20,19 +21,21 @@ matrix:
       - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
       - npm install
     
-    
     language: python
     python: 3.7
     dist: xenial
     sudo: true
+    
     before_script:
       - sudo chmod +x ./src/test/compile-src.sh #Add permission to run script
       - python3.7 -m pip install -U --pre pybuilder #For Build System
       - python3.7 -m pip install pyinstaller #For Creating Executable
+    
     script:
       - ./src/test/compile-src.sh #Compile python files in /src
       - pyb install_dependencies #Install Build Dependencies
       - pyb #Build
+    
     after_script:
       - cd ./src/main/python #Move adjacent to target script for executable
       - python3.7 -m PyInstaller GitUp.py --onefile #Create executable
@@ -40,4 +43,6 @@ matrix:
       - ./dist/GitUp& PID=$!; sleep 5; kill $PID #Run the executable before we zip it to make sure it opens
       - mv dist GitUp #Rename folder to be zipped
       - zip -r GitUp.zip GitUp #Zip
-      - pwd
+    
+    after_success:
+      - dropbox-deployment #Deploy the Zip
