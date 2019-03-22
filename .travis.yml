@@ -39,4 +39,3 @@ matrix:
     
     after_script:
       - ./generate-executable.sh
-      - dropbox-deployment #Deploy the Zip
