@@ -11,6 +11,10 @@ matrix:
         packages:
           - xvfb
 
+    before_install:
+      - rvm install 2.2.6
+      - gem install dropbox-deployment
+
     install:
       - export DISPLAY=':99.0'
       - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
@@ -36,10 +40,3 @@ matrix:
       - ./dist/GitUp& PID=$!; sleep 5; kill $PID #Run the executable before we zip it to make sure it opens
       - mv dist GitUp #Rename folder to be zipped
       - zip -r GitUp.zip GitUp #Zip
-    deploy:
-        provider: releases
-        api_key: $GITHUB_OAUTH_TOKEN
-        skip_cleanup: true
-        overwrite: true
-        on:
-          branch: executable
