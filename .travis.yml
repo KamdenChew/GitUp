@@ -37,4 +37,3 @@ matrix:
       - mv dist GitUp #Rename folder to be zipped
       - zip -r GitUp.zip GitUp #Zip
       #- Deploy to dropbox
-      
