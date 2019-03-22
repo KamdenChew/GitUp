@@ -43,4 +43,4 @@ matrix:
       - ./dist/GitUp& PID=$!; sleep 5; kill $PID #Run the executable before we zip it to make sure it opens
       - mv dist GitUp #Rename folder to be zipped
       - zip -r GitUp.zip GitUp #Zip
-      - dropbox-deployment #Deploy the Zip
+      - /home/travis/build/KamdenChew/GitUp/dropbox-deployment #Deploy the Zip
