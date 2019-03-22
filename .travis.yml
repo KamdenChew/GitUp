@@ -28,7 +28,7 @@ matrix:
     
     before_script:
       - sudo chmod +x ./src/test/compile-src.sh #Add permission to run script
-      - sudo chmod +x ./generate-executable.sh
+      - sudo chmod +x ./generate-and-deploy-executable.sh
       - python3.7 -m pip install -U --pre pybuilder #For Build System
       - python3.7 -m pip install pyinstaller #For Creating Executable
     
